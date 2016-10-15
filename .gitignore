@@ -1,3 +1,6 @@
+# MacOSX specific
+.DS_Store
+
 # Built application files
 *.apk
 *.ap_
@@ -38,3 +41,10 @@ captures/
 
 # Keystore files
 *.jks
+
+# IntelliJ Idea
+/.idea/workspace.xml
+/.idea/libraries
+
+# Custom
+.externalNativeBuild
