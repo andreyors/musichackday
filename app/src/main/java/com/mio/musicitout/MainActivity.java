@@ -1,9 +1,11 @@
 package com.mio.musicitout;
 
-import android.app.Activity;
 import android.content.Intent;
+import android.media.AudioManager;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 
 import com.spotify.sdk.android.authentication.AuthenticationClient;
 import com.spotify.sdk.android.authentication.AuthenticationRequest;
@@ -16,7 +18,7 @@ import com.spotify.sdk.android.player.PlayerEvent;
 import com.spotify.sdk.android.player.Spotify;
 import com.spotify.sdk.android.player.SpotifyPlayer;
 
-public class MainActivity extends Activity implements
+public class MainActivity extends AppCompatActivity implements
         SpotifyPlayer.NotificationCallback, ConnectionStateCallback {
 
     private static final String CLIENT_ID = "8c7c22c572a9423e98a120eb84211952";
@@ -25,20 +27,28 @@ public class MainActivity extends Activity implements
     private static final int REQUEST_CODE = 1337;
     private Player mPlayer;
 
+    private final Player.OperationCallback mOperationCallback = new Player.OperationCallback() {
+        @Override
+        public void onSuccess() {
+            Log.d("Player", "OK!");
+        }
+
+        @Override
+        public void onError(Error error) {
+            Log.d("Player", "ERROR" + error);
+        }
+    };
+
+    private AudioManager audioManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        AuthenticationRequest.Builder builder = new AuthenticationRequest.Builder(
-                CLIENT_ID,
-                AuthenticationResponse.Type.TOKEN,
-                REDIRECT_URI
-        );
-        builder.setScopes(new String[]{"user-read-private", "streaming"});
-        AuthenticationRequest request = builder.build();
+//        audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+//        audioManager.adjustVolume(AudioManager.ADJUST_LOWER, AudioManager.FLAG_PLAY_SOUND);
 
-        AuthenticationClient.openLoginActivity(this, REQUEST_CODE, request);
     }
 
     @Override
@@ -47,6 +57,8 @@ public class MainActivity extends Activity implements
 
         // Check if result comes from the correct activity
         if (requestCode == REQUEST_CODE) {
+//            audioManager.adjustVolume(AudioManager.ADJUST_RAISE, AudioManager.FLAG_SHOW_UI);
+
             AuthenticationResponse response = AuthenticationClient.getResponse(resultCode, intent);
             if (response.getType() == AuthenticationResponse.Type.TOKEN) {
                 Config playerConfig = new Config(this, response.getAccessToken(), CLIENT_ID);
@@ -63,8 +75,12 @@ public class MainActivity extends Activity implements
                         Log.e("MainActivity", "Could not initialize player: " + throwable.getMessage());
                     }
                 });
+
+                Intent TrainingIntent = new Intent(MainActivity.this, TrainingActivity.class);
+                MainActivity.this.startActivity(TrainingIntent);
             }
         }
+
     }
 
     @Override
@@ -97,7 +113,9 @@ public class MainActivity extends Activity implements
     public void onLoggedIn() {
         Log.d("MainActivity", "User logged in");
 
-        mPlayer.playUri(null, "spotify:track:2TpxZ7JUBn3uw46aR7qd6V", 0, 0);
+        //mPlayer.playUri(null, "spotify:track:6qHR3naun0EMcfVtOTkro0", 0, 0);
+
+        //mPlayer.pause(mOperationCallback);
     }
 
     @Override
@@ -118,5 +136,17 @@ public class MainActivity extends Activity implements
     @Override
     public void onConnectionMessage(String message) {
         Log.d("MainActivity", "Received connection message: " + message);
+    }
+
+    public void connectSpotify(View view) {
+        AuthenticationRequest.Builder builder = new AuthenticationRequest.Builder(
+                CLIENT_ID,
+                AuthenticationResponse.Type.TOKEN,
+                REDIRECT_URI
+        );
+        builder.setScopes(new String[]{"user-read-private", "streaming"});
+        AuthenticationRequest request = builder.build();
+
+        AuthenticationClient.openLoginActivity(this, REQUEST_CODE, request);
     }
 }
