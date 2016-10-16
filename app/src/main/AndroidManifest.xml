@@ -28,24 +28,23 @@
             android:name=".TrainingActivity"
             android:label="@string/training_name"
             android:theme="@style/SportifyTheme" />
-
         <activity
             android:name=".TrainingDetailActivity"
             android:label="@string/training_detail_name"
             android:theme="@style/SportifyTheme" />
-
         <activity
             android:name="com.spotify.sdk.android.authentication.LoginActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 
-
         <service
             android:name=".SpotifyService"
             android:exported="false" />
-
         <service
             android:name=".VolumeControlService"
             android:exported="false" />
+        <service
+            android:name=".PlayMusic"
+            android:exported="false"></service>
     </application>
 
 </manifest>

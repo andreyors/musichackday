@@ -11,7 +11,7 @@
         android:orientation="vertical">
 
         <LinearLayout
-            android:id="@+id/viewA"
+            android:id="@+id/block"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
@@ -35,7 +35,7 @@
             android:src="@android:drawable/ic_input_add"
             android:tint="@color/textColorSecondary"
             app:backgroundTint="@color/colorPrimaryLight"
-            app:layout_anchor="@id/viewA"
+            app:layout_anchor="@id/block"
             app:layout_anchorGravity="top|right|end" />
 
     </LinearLayout>

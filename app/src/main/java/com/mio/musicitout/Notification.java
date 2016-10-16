@@ -5,8 +5,11 @@ import android.media.AudioManager;
 import android.media.MediaPlayer;
 
 public class Notification {
+    public static final int START = 0;
+    public static final int NEXT = 1;
 
-    public static void play(final Context context, final SoundType type) {
+
+    public static void play(final Context context, final int type) {
 
         new Thread(new Runnable() {
 
@@ -17,11 +20,11 @@ public class Notification {
                 int resId = -1;
 
                 switch (type) {
-                    case NEXT:
+                    case Notification.NEXT:
                         resId = R.raw.next;
                         break;
 
-                    case START:
+                    case Notification.START:
                         resId = R.raw.start;
                         break;
                 }
