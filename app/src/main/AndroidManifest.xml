@@ -1,43 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-package="com.mio.musicitout" >
+    package="com.mio.musicitout">
 
-<uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
-<application
-    android:allowBackup="true"
-    android:icon="@mipmap/ic_launcher"
-    android:label="@string/app_name" >
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name">
+        <activity
+            android:name=".SplashActivity"
+            android:theme="@style/SplashTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-    <activity
-        android:name=".SplashActivity"
-        android:theme="@style/SplashTheme">
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
-    </activity>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".MainActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".SettingsActivity"
+            android:label="@string/setting_name"
+            android:theme="@style/SportifyTheme" />
+        <activity
+            android:name=".TrainingActivity"
+            android:label="@string/training_name"
+            android:theme="@style/SportifyTheme" />
 
-    <activity
-        android:name=".MainActivity"
-        android:theme="@style/Theme.AppCompat.NoActionBar"
-    />
+        <activity
+            android:name=".TrainingDetailActivity"
+            android:label="@string/training_detail_name"
+            android:theme="@style/SportifyTheme" />
 
-    <activity
-        android:name=".SettingsActivity"
-        android:label="@string/setting_name"
-        android:theme="@style/SportifyTheme"
-        />
+        <activity
+            android:name="com.spotify.sdk.android.authentication.LoginActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 
-    <activity
-        android:name=".TrainingActivity"
-        android:label="@string/training_name"
-        android:theme="@style/SportifyTheme"
-        />
 
-    <activity
-        android:name="com.spotify.sdk.android.authentication.LoginActivity"
-        android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
+        <service
+            android:name=".SpotifyService"
+            android:exported="false" />
 
-</application>
+        <service
+            android:name=".VolumeControlService"
+            android:exported="false" />
+    </application>
+
 </manifest>

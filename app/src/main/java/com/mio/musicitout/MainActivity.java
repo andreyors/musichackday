@@ -30,12 +30,12 @@ public class MainActivity extends AppCompatActivity implements
     private final Player.OperationCallback mOperationCallback = new Player.OperationCallback() {
         @Override
         public void onSuccess() {
-            Log.d("Player", "OK!");
+            Log.d("Notification", "OK!");
         }
 
         @Override
         public void onError(Error error) {
-            Log.d("Player", "ERROR" + error);
+            Log.d("Notification", "ERROR" + error);
         }
     };
 
@@ -45,10 +45,6 @@ public class MainActivity extends AppCompatActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-//        audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-//        audioManager.adjustVolume(AudioManager.ADJUST_LOWER, AudioManager.FLAG_PLAY_SOUND);
-
     }
 
     @Override
@@ -57,8 +53,6 @@ public class MainActivity extends AppCompatActivity implements
 
         // Check if result comes from the correct activity
         if (requestCode == REQUEST_CODE) {
-//            audioManager.adjustVolume(AudioManager.ADJUST_RAISE, AudioManager.FLAG_SHOW_UI);
-
             AuthenticationResponse response = AuthenticationClient.getResponse(resultCode, intent);
             if (response.getType() == AuthenticationResponse.Type.TOKEN) {
                 Config playerConfig = new Config(this, response.getAccessToken(), CLIENT_ID);
@@ -112,6 +106,9 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     public void onLoggedIn() {
         Log.d("MainActivity", "User logged in");
+
+        Intent intent = new Intent(this, SpotifyService.class);
+        startService(intent);
 
         //mPlayer.playUri(null, "spotify:track:6qHR3naun0EMcfVtOTkro0", 0, 0);
 

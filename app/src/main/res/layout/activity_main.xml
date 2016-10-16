@@ -12,18 +12,18 @@
     android:layout_height="fill_parent"
     android:orientation="vertical"
     android:background="@drawable/splash"
-    android:scaleType="centerInside">
+    android:gravity="center_horizontal">
 
 
     <Button
-        android:text="Connect Spotify Account"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:text="@string/connect_spotify_account"
+        android:layout_width="wrap_content"
         android:id="@+id/btn_connect"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
 
         android:onClick="connectSpotify"
-        style="@android:style/Widget.Holo.Button.Borderless" />
+        style="@android:style/Widget.Holo.Button"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"
+        android:layout_height="wrap_content" />
 </RelativeLayout>

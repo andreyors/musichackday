@@ -1,5 +1,9 @@
 <resources>
     <string name="app_name">Sportify</string>
+    <string name="connect_spotify_account">Connect Spotify Account</string>
+
     <string name="setting_name">Settings</string>
+
     <string name="training_name">Recommended Workouts</string>
+    <string name="training_detail_name">Core Strength</string>
 </resources>

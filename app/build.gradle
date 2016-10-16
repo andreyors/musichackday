@@ -3,11 +3,10 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 23
     buildToolsVersion "23.0.1" // Note: this version should match the latest build-tools version
-    // that you installed in the SDK manager
 
     defaultConfig {
         applicationId "com.mio.musicitout"
-        minSdkVersion 15
+        minSdkVersion 21
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
@@ -36,7 +35,15 @@ dependencies {
     // This library handles music playback
     compile 'com.spotify.sdk:spotify-player:beta23-noconnect-2.20b@aar'
 
-    // All other dependencies for your app should also be here:
-    compile 'com.android.support:appcompat-v7:23.1.1'
-    compile 'com.android.support:design:23.1.1'
+    //noinspection GradleDependency
+    compile 'com.android.support:appcompat-v7:23.0.1'
+    //noinspection GradleDependency
+    compile 'com.android.support:design:23.0.1'
+    //noinspection GradleDependency
+    compile 'com.android.support:recyclerview-v7:23.0.1'
+    //noinspection GradleDependency
+    compile 'com.android.support:cardview-v7:23.0.1'
+    //noinspection GradleDependency
+    compile 'com.android.support:palette-v7:23.0.1'
+    compile 'com.squareup.picasso:picasso:2.5.0'
 }
