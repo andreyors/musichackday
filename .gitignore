@@ -1,6 +1,9 @@
 # MacOSX specific
 .DS_Store
 
+# IntelliJ
+.idea/
+
 # Built application files
 *.apk
 *.ap_
